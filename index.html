@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<title>Vadodara Bauddha Samelan</title>
+	<script
+		src="https://code.jquery.com/jquery-3.4.1.js"
+		integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+		crossorigin="anonymous"></script>
+
+    <!-- Bootstrap CDN -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+      integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"
+      integrity="sha384-LtrjvnR4Twt/qOuYxE721u19sVFLVSA4hf/rRt6PrZTmiPltdZcI7q7PXQBYTKyf"
+      crossorigin="anonymous"
+    ></script>
+
+	<script>
+
+        
+
+        var count = 1;
+        // add row
+        function addfields() {
+            count++;
+            var html = '';
+
+            html += '<div id="member' + count + '"><hr>';
+
+            html += '<p class="h6 mb-4 text-center"> Family Member: ' + count + '</p>';
+
+            html += '<div id="inputFormRow" class="form-group row">';
+            html += '<label for="fullName" class="col-sm-4 col-form-label">Family Member Name: </label>';
+            html += '<div class="col-sm-8">';
+            html += '<input type="text" id="familyMemberName' + count + '" name="familyMemberName" class="form-control" placeholder="Family Member Name/Relation" />';
+            html += '</div>';
+            html += '</div>';
+
+            html += '<div id="inputFormRow" class="form-group row">';
+            html += '<label for="fullName" class="col-sm-4 col-form-label">Education: </label>';
+            html += '<div class="col-sm-8">';
+            html += '<input type="text" id="education' + count + '" name="education" class="form-control" placeholder="Education" />';
+            html += '</div>';
+            html += '</div>';
+
+            html += '<div id="inputFormRow" class="form-group row">';
+            html += '<label for="fullName" class="col-sm-4 col-form-label">Date of Birth: </label>';
+            html += '<div class="col-sm-8">';
+            html += '<input type="text" id="dob' + count + '" name="dob" class="form-control" placeholder="dd-mm-yyyy" />';
+            html += '</div>';
+            html += '</div>';
+
+            html += '<div id="inputFormRow" class="form-group row">';
+            html += '<label for="fullName" class="col-sm-4 col-form-label">Occupation: </label>';
+            html += '<div class="col-sm-8">';
+            html += '<input type="text" id="occupation' + count + '" name="occupation" class="form-control" placeholder="Occupation" />';
+            html += '</div>';
+            html += '</div>';
+
+            html += '<div id="inputFormRow" class="form-group row">';
+            html += '<label for="fullName" class="col-sm-4 col-form-label">Family Member Mobile: </label>';
+            html += '<div class="col-sm-8">';
+            html += '<input type="text" id="familyMemberMobile' + count + '" name="familyMemberMobile" class="form-control" placeholder="Family Member Mobile" />';
+            html += '</div>';
+            html += '</div>';
+
+            //html += '<button class="btn btn-danger" type="button" onclick="remove_member('+ count +');"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </button>';
+
+            html += '</p>';
+            
+            $('#newRow').append(html);
+        }
+
+        // remove row
+        function remove_member(rid) {
+            $('#member'+rid).remove();
+        }
+
+        function showEntries() {
+          $("#parivarForm").hide();
+          $("#showEntriesBtn").hide();
+
+          var showEntryHtml = '';
+          showEntryHtml += '<p class="h5 mb-4 text-center">Vadodara Bauddha Parivar</p>';
+          showEntryHtml += '<button class="btn btn-info my-4 btn-block" onclick="showForm();">Return to Form</button>';
+          $("#showEntries").append(showEntryHtml);
+          $("#showEntries").show();
+        }
+
+        function showForm() {
+          $("#parivarForm").show();
+          $("#showEntriesBtn").show();
+
+          $("#showEntries").hide();
+        }
+	</script>
+
+    <style>
+      form {
+        margin: auto;
+      }
+
+      .center {
+        text-align: center;
+      }
+
+      .message {
+        font-family: sans-serif;
+        font-weight: bolder;
+        color: darkblue;
+      }
+
+      .loader-center {
+          text-align: -webkit-center;
+      }
+
+      .loader {
+        border: 16px solid #f3f3f3; /* Light grey */
+        border-top: 16px solid #3498db; /* Blue */
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+        animation: spin 2s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+    </style>
+
+</head>
+<body class="container">
+    <div class="row" style="display: none" id="message">
+        <div class="col-sm-12 p-5 center message">
+            <h1>Thank you for submitting!</h1>
+        </div>
+    </div>
+    <div class="row" id="loader" style="display: none; position: fixed; z-index: 9999; width: 100%; height: 100%;">
+      <div class="col-sm-8 p-5 loader-center">
+        <div class="loader"></div>
+      </div>
+    </div>
+    <div class="row" id="formDiv">
+        <form class="border border-light p-5" id="parivarForm">
+            <p class="h3 mb-4 text-center">Vadodara Bauddha Samelan</p>
+            <p class="h6 mb-4 text-center">Place of Program: Lumbini Buddha Vihar, Sawad Quarters, Harni-Varsia ring road, Near Sangam char rasta, Vadodara</p>
+            <div class="form-group row">
+                <label for="fullName" class="col-sm-4 col-form-label"
+                    >Main Member Name* :
+                </label>
+                <div class="col-sm-8">
+                    <input
+                    type="text"
+                    id="fullName"
+                    name="fullname"
+                    class="form-control"
+                    placeholder="Full name"
+                    required
+                    />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="mobile" class="col-sm-4 col-form-label"
+                    >Mobile Number* :
+                </label>
+                <div class="col-sm-8">
+                    <input
+                    class="form-control"
+                    type="number"
+                    placeholder="9876543210"
+                    id="mobile"
+                    name="mobile"
+                    required
+                    />
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="fullName" class="col-sm-4 col-form-label"
+                    >Address :
+                </label>
+                <div class="col-sm-8">
+                    <input
+                    type="text"
+                    id="address"
+                    name="address"
+                    class="form-control"
+                    placeholder="Full Address"
+                    required
+                    />
+                </div>
+            </div>
+
+            <div id="newRow"></div>
+            <button id="addRow" type="button" class="btn btn-info" onclick="addfields();">Add Family Member</button>
+        
+            <button class="btn btn-success my-4 btn-block" type="submit">
+            Save
+            </button>
+        </form>
+    </div>
+
+
+    <!--/* <div class="row" id="showEntriesBtn">
+      <button class="btn btn-info my-4 btn-block" onclick="showEntries();">
+        Show Total Entries
+      </button>
+    </div>
+
+    <div class="row" id="showEntries" style="display: none">
+      
+    </div> */-->
+
+    <script>
+    $("#parivarForm").submit(function (event) {
+        event.preventDefault();
+        var jsonData = {};
+        var data = [];
+        for(var indx=0; indx < count; indx++) {
+            var rowData = {};
+            var num = indx+1;
+            rowData.MOBILE = $("#mobile").val();
+            rowData.ADDRESS = $("#address").val();
+            rowData.EDUCATION = $("#education"+num).val();
+            rowData.OCCUPATION = $("#occupation"+num).val();
+            rowData.DATEOFBIRTH = $("#dob"+num).val();
+            rowData.MAIN_MEMBER_NAME = $("#fullName").val();
+            rowData.FAMILY_MEMBER_NAME = $("#familyMemberName"+num).val();
+            rowData.FAMILY_MEMBER_MOBILE = $("#familyMemberMobilecation"+num).val();
+            data.push(rowData);
+        }
+        jsonData.data = data;
+        $.ajax({
+          url: "https://api.apispreadsheets.com/data/qtTBCT9YsAPO1pb3/",
+          type: "post",
+          data: JSON.stringify(jsonData),
+          beforeSend: function () {
+            $("#parivarForm :input").prop("disabled", true);
+            $("#loader").show();
+          },
+          success: function () {
+            $("#message").show();
+            $("#parivarForm").hide();
+          },
+          complete: function (data) {
+            $("#loader").hide();
+          },
+          error: function () {
+            alert("There was an error !");
+          },
+        });
+      });
+    </script>
+</body>
+</html>
